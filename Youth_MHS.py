@@ -136,7 +136,7 @@ stacked = stacked.rename(columns= {"level_1": "Provider", 0:"Count"})
 fig,ax = plt.subplots()
 sns.kdeplot(data=stacked, x="Count", hue= "Provider", fill=True, ax=ax)
 
-# change density title- probability- higher probablity of grabbign number in orange
+# probability density- higher probablity of grabbign number in orange
 # and get a provider but social workers could be all over the place
 
 
