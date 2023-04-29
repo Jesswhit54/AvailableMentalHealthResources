@@ -4,11 +4,15 @@ Created on Fri Apr 28 18:33:56 2023
 
 @author: jessi
 """
+# import necessary modules
+
 import requests
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 plt.rcParams['figure.dpi'] = 300
+
+#%% ACCESS CENSUS DATASET
 
 # create API to access census data (you will need to request a census key)
 url = "https://api.census.gov/data/2015/acs/acs5"
@@ -26,8 +30,9 @@ json_data = response.json()
 #Parse JSON response and extract relevant data
 headers = json_data[0]
 data = json_data[1:]
-
 under_18_county = pd.DataFrame(columns=headers, data=data)
+
+#%% CLEANING DATA- PREP FOR LEFT JOIN
 
 # rename census column into POP= population
 under_18_county = under_18_county.rename(columns={
@@ -64,36 +69,47 @@ youth_MHS['POP_10K']= youth_MHS['POP']/10e3
 # total psy kid oriented drs
 youth_MHS['TOTAL_PSY'] = youth_MHS['Psychiatrists'] * youth_MHS['POP']/10e3
 #%%
+
+# possibly good in theory but not Monday presentation
 fig,ax = plt.subplots()
 youth_MHS['Psychiatrists'].plot.barh(ax=ax)
 
+#%% GRAPHING AND PLOTTING DATA
+
+# Drop the outlyer as this is not indicitive of the average data
+#youth_MHS = ['County'].drop('New York')
+
+# create scatterplot 
 fig,ax = plt.subplots()
 youth_MHS.plot.scatter(x= 'Pediatricians', y='Psychiatrists',ax=ax)
 
-# run regression, and access other variables that could affect these outcomes, 
-# could get another variable such as per capita income. 
 
-# look upseaborn lmplot and reg plot to appox regression. 
+# run a regression on the scatterplot with a 95% confidence interval
+sns.lmplot(x= 'Pediatricians', y='Psychiatrists', data=youth_MHS);
 
-# sns.lmplot(data=None, x=None, y=None, hue=None, col=None, row=None, 
-#               palette=None, col_wrap=None, height=5, aspect=1, markers='o', 
- #              sharex=None, sharey=None, hue_order=None, col_order=None, 
-  #             row_order=None, legend=True, legend_out=None, x_estimator=None,
-   #            x_bins=None, x_ci='ci', scatter=True, fit_reg=True, 
-    #           ci=95, n_boot=1000, units=None, seed=None, order=1, 
-     #          logistic=False, lowess=False, robust=False, logx=False, 
-      #         x_partial=None, y_partial=None, truncate=True, x_jitter=None,
-       #        y_jitter=None, scatter_kws=None, line_kws=None, facet_kws=None)
-
-sns.regplot(data=youth_MHS)
+#ax.set_title("Nameplate Capacity")
+#ax1.set_xlabel("kW")
+#ax1.set_ylabel("")
+#fig.tight_layout()
+#fig.savefig("res_kde.png")
 
 
 
+#%%
+fig,ax = plt.subplots()
+youth_MHS.plot.scatter(x= 'Licensed Social Workers', y='Psychiatrists',ax=ax)
 
+# run a regression on the scatterplot with a 95% confidence interval
+sns.lmplot(x= 'Licensed Social Workers', y='Psychiatrists', data=youth_MHS);
 
-
-
-
+# produces high-level graphics object that doesn't require the subplot function
+jg = sns.jointplot( data=youth_MHS, x="Licensed Social Workers", y="Psychiatrists",
+                   kind= "hex")
+jg.set_axis_labels("Licensed Social Workers", "Psychiatrists")
+# set overall title
+jg.fig.suptitle("Test")
+#jg.fig.tight_layout()
+#fig.savefig("res_hexbin.png")
 
 
 
