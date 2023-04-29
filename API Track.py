@@ -111,6 +111,13 @@ jg.fig.suptitle("Test")
 #jg.fig.tight_layout()
 #fig.savefig("res_hexbin.png")
 
+fig,ax = plt.subplots()
+sns.kdeplot(data=youth_MHS, x="Licensed Social Workers",  
+            palette="Psychiatrists", fill=True, ax=ax)
+ax.set_title("Test2")
+ax.set_xlabel("1")
+ax.set_ylabel("2")
+
 
 
 
