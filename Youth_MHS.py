@@ -77,7 +77,9 @@ youth_MHS['Psychiatrists'].plot.barh(ax=ax)
 #%% GRAPHING AND PLOTTING DATA
 
 # Drop the outlyer as this is not indicitive of the average data
-#youth_MHS = ['County'].drop('New York')
+# this drops the row you didnt want. 
+youth_MHS = youth_MHS.query("County != 'New York'")
+
 
 # create scatterplot 
 fig,ax = plt.subplots()
@@ -111,12 +113,31 @@ jg.fig.suptitle("Test")
 #jg.fig.tight_layout()
 #fig.savefig("res_hexbin.png")
 
+# distributions of social workers across counties 
+# some counties have a large number 
 fig,ax = plt.subplots()
-sns.kdeplot(data=youth_MHS, x="Licensed Social Workers",  
+sns.kdeplot(data=youth_MHS, x="Licensed Social Workers",   
             palette="Psychiatrists", fill=True, ax=ax)
 ax.set_title("Test2")
 ax.set_xlabel("1")
 ax.set_ylabel("2")
+
+#%%
+# stack data to get overlapping densities of different drs availible in a density 
+
+stacked = youth_MHS [['County', 'Pediatricians',
+                      'Psychiatrists', 'Family Medicine Physicians',
+                      'Licensed Social Workers','Psychologists']]
+stacked = stacked.set_index("County")
+stacked = stacked.stack().reset_index()
+stacked = stacked.rename(columns= {"level_1": "Provider", 0:"Count"})
+
+#%%
+fig,ax = plt.subplots()
+sns.kdeplot(data=stacked, x="Count", hue= "Provider", fill=True, ax=ax)
+
+# change density title- probability- higher probablity of grabbign number in orange
+# and get a provider but social workers could be all over the place
 
 
 
