@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 plt.rcParams['figure.dpi'] = 300
 
-#%% ACCESS CENSUS DATASET
+#%% ACCESS CENSUS DATA
 
 # create API to access census data (you will need to request a census key)
 url = "https://api.census.gov/data/2015/acs/acs5"
@@ -32,62 +32,63 @@ headers = json_data[0]
 data = json_data[1:]
 under_18_county = pd.DataFrame(columns=headers, data=data)
 
-#%% CLEANING DATA- PREP FOR LEFT JOIN
+#%% CLEANING DATA & PREPARE DATA FOR A LEFT JOIN
 
-# rename census column into POP= population
+# rename census columns to descriptive column headers
 under_18_county = under_18_county.rename(columns={
     "B09001_001E": "POP", 
     "B01001_001E": "TOTAL_POP"})
 
-# convert POP column into integers
+# convert the POP column into integers
 under_18_county["POP"]=under_18_county["POP"].astype(int)
 
-# import CSV file for Behavioral health service providers by county in 2015
+# import CSV file for '2015 Behavioral Health Service Providers in NYS by County'
 mental_health_2015 = pd.read_csv('Behavioral health service providers by county 2015.csv')
 
-
+# replace 
 under_18_county['NAME'] = under_18_county['NAME'].str.replace(' County, New York', '')
 
-# drop unnecesary column
+# drop unnecesary columns
 under_18_county= under_18_county.drop(columns= 'state')
 under_18_county= under_18_county.drop(columns= 'county')
 
-# rename column
+# rename columns with similar names in both datasets
 under_18_county = under_18_county.rename(columns={"NAME": "County"})
 
-# change CVS file name
+# change CVS file name to match census data
 mental_health_2015['County']= mental_health_2015['County'].replace('Saint Lawrence', 'St. Lawrence')
 
-# merge data sets/ join data
+# merge data with a left hand join, merge onto county in this join
+# created new dataframe with relevant information
 youth_MHS = under_18_county.merge(mental_health_2015, left_on=["County"], right_on= ["County"], how= 'left')
 
-# column with POP/ 10 K to compare numbers of providors and number of 10K kids
-# look at ratios of these things across diff states
+#%% WORK WITH DATA
 
+# can expand to look at ratios across different states
+# create column with ration of population/ 10,000 kids
 youth_MHS['POP_10K']= youth_MHS['POP']/10e3
 
-# total psy kid oriented drs
+# total youth oriented Psychiatrists
 youth_MHS['TOTAL_PSY'] = youth_MHS['Psychiatrists'] * youth_MHS['POP']/10e3
+
+# dropping Manhattan as an outlyer as this is not indicitive of the average data
+# 
+# drop unwanted row 
+youth_MHS = youth_MHS.query("County != 'New York'")
 #%%
 
-# possibly good in theory but not Monday presentation
+# possibly good in theory but not Monday presentation?????????????????????????????????????
 fig,ax = plt.subplots()
 youth_MHS['Psychiatrists'].plot.barh(ax=ax)
 
 #%% GRAPHING AND PLOTTING DATA
 
-# Drop the outlyer as this is not indicitive of the average data
-# this drops the row you didnt want. 
-youth_MHS = youth_MHS.query("County != 'New York'")
-
-
 # create scatterplot 
 fig,ax = plt.subplots()
 youth_MHS.plot.scatter(x= 'Pediatricians', y='Psychiatrists',ax=ax)
 
-
 # run a regression on the scatterplot with a 95% confidence interval
-sns.lmplot(x= 'Pediatricians', y='Psychiatrists', data=youth_MHS);
+sns.lmplot(x= 'Pediatricians', y='Psychiatrists', data=youth_MHS)
 
 #ax.set_title("Nameplate Capacity")
 #ax1.set_xlabel("kW")
@@ -95,14 +96,16 @@ sns.lmplot(x= 'Pediatricians', y='Psychiatrists', data=youth_MHS);
 #fig.tight_layout()
 #fig.savefig("res_kde.png")
 
+fig,ax = plt.subplots()
+youth_MHS.plot.scatter(x= 'TOTAL_POP', y= 'Psychiatrists', ax=ax)
 
 
-#%%
 fig,ax = plt.subplots()
 youth_MHS.plot.scatter(x= 'Licensed Social Workers', y='Psychiatrists',ax=ax)
 
 # run a regression on the scatterplot with a 95% confidence interval
 sns.lmplot(x= 'Licensed Social Workers', y='Psychiatrists', data=youth_MHS);
+
 
 # produces high-level graphics object that doesn't require the subplot function
 jg = sns.jointplot( data=youth_MHS, x="Licensed Social Workers", y="Psychiatrists",
