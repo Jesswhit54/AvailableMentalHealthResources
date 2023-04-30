@@ -12,7 +12,7 @@ plt.rcParams['figure.dpi'] = 300
 import youth_MHS
 
 # GRAPHING AND PLOTTING DATA
-# various data vizualization methods can be seen below
+# various data visualization  methods can be seen below
 
 
 #%% SCATTER PLOTS AND REGRESSIONS
