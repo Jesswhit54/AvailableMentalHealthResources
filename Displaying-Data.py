@@ -9,7 +9,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 plt.rcParams['figure.dpi'] = 300
-import youth_MHS
+import youth_MHS as youth_MHS
 
 # GRAPHING AND PLOTTING DATA
 # various data visualization  methods can be seen below
