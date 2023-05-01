@@ -76,3 +76,14 @@ youth_MHS['TOTAL_PSY'] = youth_MHS['Psychiatrists'] * youth_MHS['POP']/10e3
 # drop unwanted row 
 youth_MHS = youth_MHS.query("County != 'New York'")
 
+
+#%% SAVING THE FILE
+
+youth_MHS.to_pickle("Data_Collection.pkl")
+
+
+
+
+
+
+

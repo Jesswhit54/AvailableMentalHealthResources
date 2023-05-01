@@ -4,12 +4,15 @@ Created on Sun Apr 30 17:21:00 2023
 
 @author: jessi
 """
+# import necessary modules
 import requests
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 plt.rcParams['figure.dpi'] = 300
-import youth_MHS as youth_MHS
+
+# Read your data file 
+youth_MHS = pd.read_pickle("Data_Collection.pkl")
 
 # GRAPHING AND PLOTTING DATA
 # various data visualization  methods can be seen below
