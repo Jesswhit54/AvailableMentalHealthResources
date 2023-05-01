@@ -17,7 +17,7 @@ plt.rcParams['figure.dpi'] = 300
 # create API to access census data (you will need to request a census key)
 url = "https://api.census.gov/data/2015/acs/acs5"
 params = {
-    "get": "B09001_001E,NAME,B01001_001E",
+    "get": "B09001_001E,NAME,B01001_001E,B19113_001E",
     "for": "county:*",
     "in": "state:36",
     "key": '37233c863bd5ebadbea1db94fdea521aa5ad4ddd'
@@ -37,10 +37,13 @@ under_18_county = pd.DataFrame(columns=headers, data=data)
 # rename census columns to descriptive column headers
 under_18_county = under_18_county.rename(columns={
     "B09001_001E": "POP", 
-    "B01001_001E": "TOTAL_POP"})
+    "B01001_001E": "TOTAL_POP",
+    "B19113_001E": "FAM_INCOME"})
 
-# convert the POP column into integers
-under_18_county["POP"]=under_18_county["POP"].astype(int)
+# convert relevant columns from strings into integers in a loop
+# cannot run regressions on strings
+for column in ["POP", "TOTAL_POP", "FAM_INCOME"]:
+    under_18_county[column]=under_18_county[column].astype(int)
 
 # import CSV file for '2015 Behavioral Health Service Providers in NYS by County'
 mental_health_2015 = pd.read_csv('Behavioral health service providers by county 2015.csv')

@@ -40,7 +40,9 @@ fig,ax = plt.subplots()
 youth_MHS.plot.scatter(x= 'TOTAL_POP', y= 'Psychiatrists', ax=ax)
 
 # run a regression on the scatterplot with a 95% confidence interval
-#sns.lmplot(x= 'TOTAL_POP', y='Psychiatrists', data=youth_MHS)
+sns.lmplot(x= 'TOTAL_POP', y='Psychiatrists', data=youth_MHS)
+sns.lmplot(x= 'FAM_INCOME', y='Psychiatrists', data=youth_MHS)
+
 
 ax.set_title("Total Population of NYS Counties")
 ax.set_xlabel("Total Population")
@@ -56,6 +58,13 @@ youth_MHS.plot.scatter(x= 'Licensed Social Workers', y='Psychiatrists',ax=ax)
 
 # run a regression on the scatterplot with a 95% confidence interval
 sns.lmplot(x= 'Licensed Social Workers', y='Psychiatrists', data=youth_MHS);
+
+#%%
+
+# create skatter plot that varies in size 
+# seborn relplot
+
+
 
 
 #%% HEX PLOT
