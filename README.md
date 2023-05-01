@@ -1,2 +1,2 @@
-# AvailableMentalHealthResources
-Description of available mental health resources across certain geographical regions.
+#YouthMentalHealthServicesNYS
+Description of available youth mental health resources across NYS counties.
