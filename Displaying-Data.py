@@ -66,7 +66,6 @@ sns.lmplot(x= 'Licensed Social Workers', y='Psychiatrists', data=youth_MHS);
 
 
 
-
 #%% HEX PLOT
 
 # produces high-level graphics object that doesn't require the subplot function
