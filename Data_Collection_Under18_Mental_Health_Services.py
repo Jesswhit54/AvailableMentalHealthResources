@@ -75,7 +75,6 @@ youth_MHS['POP_10K']= youth_MHS['POP']/10e3
 youth_MHS['TOTAL_PSY'] = youth_MHS['Psychiatrists'] * youth_MHS['POP']/10e3
 
 # dropping Manhattan as an outlyer as this is not indicitive of the average data
-# 
 # drop unwanted row 
 youth_MHS = youth_MHS.query("County != 'New York'")
 

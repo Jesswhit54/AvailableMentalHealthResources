@@ -31,7 +31,7 @@ ax.set_title( "Pediatricians & Psychiatrists")
 ax.set_xlabel("Pediatricians")
 ax.set_ylabel("Psychiatrists")
 fig.tight_layout()
-fig.savefig("Pediatricians & Psychiatrists.png")
+fig.savefig("Images/Pediatricians & Psychiatrists.png")
 
 #%%
 
@@ -48,7 +48,7 @@ ax.set_title("Total Population of NYS Counties")
 ax.set_xlabel("Total Population")
 ax.set_ylabel("Psychiatrists")
 fig.tight_layout()
-fig.savefig("Total Population of NYS Counties")
+fig.savefig("Images/Total Population of NYS Counties.png")
 
 #%%
 
@@ -59,11 +59,28 @@ youth_MHS.plot.scatter(x= 'Licensed Social Workers', y='Psychiatrists',ax=ax)
 # run a regression on the scatterplot with a 95% confidence interval
 sns.lmplot(x= 'Licensed Social Workers', y='Psychiatrists', data=youth_MHS);
 
-#%%
+#%% SEABORN RELPLOT
 
-# create skatter plot that varies in size 
-# seborn relplot
+# The sizes argument sets the minimum and maximum sizes that will be used
+# for points (which are scaled by the population of each ring). 
+# The facet_kws argument is a dictionary of tweaks allowed by Seaborn's 
+# FacetGrid objects: the 'despine' argument says not to remove the top 
+# and right borders of the graph, and the subplot_kws is a dictionary of 
+# tweaks that are passed on to the underlying matplotlib routines (here 
+# it just adds a title). 
 
+
+fg = sns.relplot(data= youth_MHS, x='FAM_INCOME', y= 'Psychiatrists',
+                 size='POP', sizes=(10,200),
+                 facet_kws={'despine': False, 
+                            'subplot_kws': {'title': 'Family Income by Psychiatrists'}})
+
+#%% SEABORN RELPLOT
+
+fg = sns.relplot(data= youth_MHS, x='FAM_INCOME', y= 'Licensed Social Workers',
+                 size='POP', sizes=(10,200),
+                 facet_kws={'despine': False, 
+                            'subplot_kws': {'title': 'Family Income by LSW'}})
 
 
 #%% HEX PLOT
@@ -75,7 +92,7 @@ jg = sns.jointplot( data=youth_MHS, x="Licensed Social Workers", y="Psychiatrist
 jg.set_axis_labels("Licensed Social Workers", "Psychiatrists")
 jg.fig.suptitle("LSW & Psychiatrists")
 jg.fig.tight_layout()
-fig.savefig("LSW & Psychiatrists Hex.png")
+fig.savefig("Images/LSW & Psychiatrists Hex.png")
 
 #%% DENSITY PLOT
 
@@ -96,7 +113,7 @@ fig,ax = plt.subplots()
 sns.kdeplot(data=stacked, x="Count", hue= "Provider", fill=True, ax=ax)
 ax.set_title("Probability Desnity Multiple Providers")
 fig.tight_layout()
-fig.savefig("Probability Density Multiple Providers")
+fig.savefig("Images/Probability Density Multiple Providers.png")
 
 
 
