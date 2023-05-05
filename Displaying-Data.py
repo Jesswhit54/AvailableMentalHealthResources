@@ -31,7 +31,7 @@ ax.set_title( "Pediatricians & Psychiatrists")
 ax.set_xlabel("Pediatricians")
 ax.set_ylabel("Psychiatrists")
 fig.tight_layout()
-fig.savefig("Images/Pediatricians & Psychiatrists.png")
+fig.savefig("Images/PediatriciansandPsychiatrists.png")
 
 #%%
 
@@ -48,7 +48,7 @@ ax.set_title("Total Population of NYS Counties")
 ax.set_xlabel("Total Population")
 ax.set_ylabel("Psychiatrists")
 fig.tight_layout()
-fig.savefig("Images/Total Population of NYS Counties.png")
+fig.savefig("Images/TotalPopulationofNYSCounties.png")
 
 #%%
 
@@ -92,7 +92,7 @@ jg = sns.jointplot( data=youth_MHS, x="Licensed Social Workers", y="Psychiatrist
 jg.set_axis_labels("Licensed Social Workers", "Psychiatrists")
 jg.fig.suptitle("LSW & Psychiatrists")
 jg.fig.tight_layout()
-fig.savefig("Images/LSW & Psychiatrists Hex.png")
+fig.savefig("Images/LSWandPsychiatristsHex.png")
 
 #%% DENSITY PLOT
 
@@ -113,7 +113,24 @@ fig,ax = plt.subplots()
 sns.kdeplot(data=stacked, x="Count", hue= "Provider", fill=True, ax=ax)
 ax.set_title("Probability Desnity Multiple Providers")
 fig.tight_layout()
-fig.savefig("Images/Probability Density Multiple Providers.png")
+fig.savefig("Images/ProbabilityDensityMultipleProviders.png")
 
+
+#%% HEATMAP
+# load in shape file- counties
+# merge on to county whatever you want to use as color variable
+# join onto county name
+# geodataframe.plot("column name you want to use for coloring")
+# 
+# download shape file from census for cartigraphic boundreis for 
+# county filter for FIPS code 36
+# can tell ppl how to get original data 
+
+#%%
+# Look at quick reference 
+# plt.subplots(1,2)
+
+# seaborn can draw 4 plots in one thing later
+# do ordinary plots one by one--- then do fancy later
 
 
