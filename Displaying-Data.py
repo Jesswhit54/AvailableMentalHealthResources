@@ -4,36 +4,90 @@ Created on Sun Apr 30 17:21:00 2023
 
 @author: jessi
 """
-# import necessary modules
+
+#%% IMPORT NECESSARY MODULES
+# import previous modules and data vizualization modules
+
 import requests
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 plt.rcParams['figure.dpi'] = 300
 
+#%% READING THE DATA
+
 # Read your data file 
 youth_MHS = pd.read_pickle("youth_MHS.pkl")
 
-# GRAPHING AND PLOTTING DATA
+#%% GRAPHING AND PLOTTING DATA
+
 # various data visualization  methods can be seen below
 
+#%% PROVIDER CORRELATIONS
+# we will look at various corrilations between the five providers
 
 #%% SCATTER PLOTS AND REGRESSIONS
 
-# create scatter plot across Pediatricians & Psychiatrists
+# Pediatricians & Psychiatrists
+# 
+# create a scatterplot across Pediatricians & Psychiatrists
 fig,ax = plt.subplots()
 youth_MHS.plot.scatter(x= 'Pediatricians', y='Psychiatrists',ax=ax)
 
+
+
+
+# CLEAN THIS
 # run a regression on the scatterplot with a 95% confidence interval
-sns.lmplot(x= 'Pediatricians', y='Psychiatrists', data=youth_MHS)
+sns.regplot(x='Pediatricians', y='Psychiatrists', data=youth_MHS, ax=ax)
+
+# Is there a way to save image with regression???????????????????
 
 ax.set_title( "Pediatricians & Psychiatrists")
 ax.set_xlabel("Pediatricians")
 ax.set_ylabel("Psychiatrists")
 fig.tight_layout()
 fig.savefig("Images/PediatriciansandPsychiatrists.png")
-
 #%%
+# Licensed Social Workers & Psychiatrists
+# 
+# create a scatterplot across LSW & Psychiatrists
+fig,ax = plt.subplots()
+youth_MHS.plot.scatter(x= 'Licensed Social Workers', y='Psychiatrists',ax=ax)
+
+# run a regression on the scatterplot with a 95% confidence interval
+sns.regplot(x= 'Licensed Social Workers', y='Psychiatrists', data=youth_MHS, ax=ax);
+
+ax.set_title( "Licensed Social Workers & Psychiatrists")
+ax.set_xlabel("Licensed Social Workers")
+ax.set_ylabel("Psychiatrists")
+fig.tight_layout()
+fig.savefig("Images/Licensed SocialWorkersandPsychiatrists.png")
+
+#%% CREATE 2 PANEL GRAPH FOR COMPARISON
+
+fig1, (ax1,ax2) = plt.subplots(1,2, sharey=True)
+fig1.suptitle("Psychiatrists Correlation")
+
+#ax1.plot("Pediatricians", "Psychiatrists")
+#ax2.plot("Licensed Social Workers", "Psychiatrists")
+
+# create variable for x and y bar
+
+youth_MHS.plot.scatter(ax=ax1, x="Pediatricians", y="Psychiatrists")
+ax1.set_xlabel("Pediatricians")
+ax1.set_ylabel("Psychiatrists")
+
+
+youth_MHS.plot.scatter(ax=ax2, x="Licensed Social Workers", y="Psychiatrists")
+ax2.set_xlabel("Licensed Social Workers")
+ax2.set_ylabel("Psychiatrists")
+fig1.tight_layout()
+
+# add regressiion?????????????
+
+
+#%% TOTAL POPULATION COMPARISONS
 
 # create scatter plot across Total Population & Psychiatrists
 fig,ax = plt.subplots()
@@ -50,15 +104,6 @@ ax.set_ylabel("Psychiatrists")
 fig.tight_layout()
 fig.savefig("Images/TotalPopulationofNYSCounties.png")
 
-#%%
-
-# create scatter plot across LSW & Psychiatrists
-fig,ax = plt.subplots()
-youth_MHS.plot.scatter(x= 'Licensed Social Workers', y='Psychiatrists',ax=ax)
-
-# run a regression on the scatterplot with a 95% confidence interval
-sns.lmplot(x= 'Licensed Social Workers', y='Psychiatrists', data=youth_MHS);
-
 #%% SEABORN RELPLOT
 
 # The sizes argument sets the minimum and maximum sizes that will be used
@@ -74,6 +119,8 @@ fg = sns.relplot(data= youth_MHS, x='FAM_INCOME', y= 'Psychiatrists',
                  size='POP', sizes=(10,200),
                  facet_kws={'despine': False, 
                             'subplot_kws': {'title': 'Family Income by Psychiatrists'}})
+fig.savefig("Images/FamilyIncomebyPsychiatrists.png")
+
 
 #%% SEABORN RELPLOT
 
@@ -92,7 +139,7 @@ jg = sns.jointplot( data=youth_MHS, x="Licensed Social Workers", y="Psychiatrist
 jg.set_axis_labels("Licensed Social Workers", "Psychiatrists")
 jg.fig.suptitle("LSW & Psychiatrists")
 jg.fig.tight_layout()
-fig.savefig("Images/LSWandPsychiatristsHex.png")
+jg.savefig("Images/LSWandPsychiatristsHex.png")
 
 #%% DENSITY PLOT
 
@@ -126,6 +173,8 @@ fig.savefig("Images/ProbabilityDensityMultipleProviders.png")
 # county filter for FIPS code 36
 # can tell ppl how to get original data 
 
+# load whole thing and filter to State 36
+
 #%%
 # Look at quick reference 
 # plt.subplots(1,2)
@@ -133,4 +182,7 @@ fig.savefig("Images/ProbabilityDensityMultipleProviders.png")
 # seaborn can draw 4 plots in one thing later
 # do ordinary plots one by one--- then do fancy later
 
+# question, input data, how to run your scripts and the take away for readers-> heres the conclusion of who runs the risk of lacking 
+# read me can contain all that or not. 
+# read me file- beginning shoul tell the person who stumbles on your repositroty what they are lookign at 
 

@@ -4,15 +4,14 @@ Created on Fri Apr 28 18:33:56 2023
 
 @author: jessi
 """
-# import necessary modules
+
+#%% IMPORT NECESSARY MODULES
+# import modules to read and clean data
 
 import requests
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-plt.rcParams['figure.dpi'] = 300
 
-#%% ACCESS CENSUS DATA
+#%% ACCESS AND READ CENSUS DATA
 
 # create API to access census data (you will need to request a census key)
 url = "https://api.census.gov/data/2015/acs/acs5"
@@ -32,7 +31,7 @@ headers = json_data[0]
 data = json_data[1:]
 under_18_county = pd.DataFrame(columns=headers, data=data)
 
-#%% CLEANING DATA & PREPARE DATA FOR A LEFT JOIN
+#%% CLEANING DATA- PREPARE FOR MERGE
 
 # rename census columns to descriptive column headers
 under_18_county = under_18_county.rename(columns={
@@ -60,12 +59,13 @@ under_18_county = under_18_county.rename(columns={"NAME": "County"})
 
 # change CVS file name to match census data
 mental_health_2015['County']= mental_health_2015['County'].replace('Saint Lawrence', 'St. Lawrence')
+#%% MERGE- LEFT JOIN DATA
 
 # merge data with a left hand join, merge onto county in this join
 # created new dataframe with relevant information
 youth_MHS = under_18_county.merge(mental_health_2015, left_on=["County"], right_on= ["County"], how= 'left')
 
-#%% WORK WITH DATA
+#%% CALCULATING RATIOS WITHING DATA
 
 # can expand to look at ratios across different states
 # create column with ration of population/ 10,000 kids
