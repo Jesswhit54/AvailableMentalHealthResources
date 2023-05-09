@@ -12,7 +12,7 @@ This is a description of various health resources available for youth in New Yor
 
 ## Input Data
 
-Data for provider information was found on the Center for Disease Control (*CDC*) website. [[Behavioral Health Services in New York, 2015](https://www.cdc.gov/childrensmentalhealth/stateprofiles-providers/new-york/index.html)]. Census data is collected via an API call to pull in relevant variables such as total population, under 18 population and median family income. 
+Data for provider information was found on the Center for Disease Control (*CDC*) website. [[*Behavioral Health Services in New York, 2015*](https://www.cdc.gov/childrensmentalhealth/stateprofiles-providers/new-york/index.html)]. Census data is collected via an API call to pull in relevant variables such as total population, under 18 population and median family income. 
 
  **mental_health_2015** is our main input displaying the number of behavioral health services by county in New York State, per 100,00 thousand kids. 
  
