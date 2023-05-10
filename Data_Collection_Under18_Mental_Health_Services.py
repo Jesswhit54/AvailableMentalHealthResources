@@ -29,33 +29,38 @@ json_data = response.json()
 #Parse JSON response and extract relevant data
 headers = json_data[0]
 data = json_data[1:]
-under_18_county = pd.DataFrame(columns=headers, data=data)
+census_2015 = pd.DataFrame(columns=headers, data=data)
 
 #%% CLEANING DATA- PREPARE FOR MERGE
 
-# rename census columns to descriptive column headers
-under_18_county = under_18_county.rename(columns={
+# rename the census columns to descriptive column headers
+census_2015 = census_2015.rename(columns={
     "B09001_001E": "POP", 
     "B01001_001E": "TOTAL_POP",
     "B19113_001E": "FAM_INCOME"})
 
-# convert relevant columns from strings into integers in a loop
-# cannot run regressions on strings
+# convert any columns containing numbers from strings into integers via a loop
+# you cannot run regressions on string variables
 for column in ["POP", "TOTAL_POP", "FAM_INCOME"]:
-    under_18_county[column]=under_18_county[column].astype(int)
+    census_2015[column]=census_2015[column].astype(int)
+
 
 # import CSV file for '2015 Behavioral Health Service Providers in NYS by County'
 mental_health_2015 = pd.read_csv('Behavioral health service providers by county 2015.csv')
 
+
 # replace county names to match CVS file- dropping the New York description
-under_18_county['NAME'] = under_18_county['NAME'].str.replace(' County, New York', '')
+census_2015['NAME'] = census_2015['NAME'].str.replace(' County, New York', '')
+
 
 # drop unnecesary columns
-under_18_county= under_18_county.drop(columns= 'state')
-under_18_county= under_18_county.drop(columns= 'county')
+census_2015 = census_2015.drop(columns= 'state')
+census_2015= census_2015.drop(columns= 'county')
+
 
 # rename columns with similar names in both datasets
-under_18_county = under_18_county.rename(columns={"NAME": "County"})
+census_2015 = census_2015.rename(columns={"NAME": "County"})
+
 
 # change CVS file name to match census data
 mental_health_2015['County']= mental_health_2015['County'].replace('Saint Lawrence', 'St. Lawrence')
@@ -63,7 +68,7 @@ mental_health_2015['County']= mental_health_2015['County'].replace('Saint Lawren
 
 # merge data with a left hand join, merge onto county in this join
 # created new dataframe with relevant information
-youth_MHS = under_18_county.merge(mental_health_2015, left_on=["County"], right_on= ["County"], how= 'left')
+youth_MHS = census_2015.merge(mental_health_2015, left_on=["County"], right_on= ["County"], how= 'left')
 
 #%% CALCULATING RATIOS WITHING DATA
 
@@ -71,13 +76,17 @@ youth_MHS = under_18_county.merge(mental_health_2015, left_on=["County"], right_
 # create column with ration of population/ 10,000 kids
 youth_MHS['POP_10K']= youth_MHS['POP']/10e3
 
+
 # total youth oriented Psychiatrists
 youth_MHS['TOTAL_PSY'] = youth_MHS['Psychiatrists'] * youth_MHS['POP']/10e3
 
-# dropping Manhattan as an outlyer as this is not indicitive of the average data
+
+# I amdropping Manhattan as an outlyer as this is not indicitive of the average data
+# remove this line if not you'd like to view all variables
+
+
 # drop unwanted row 
 youth_MHS = youth_MHS.query("County != 'New York'")
-
 
 #%% SAVING THE FILE
 
