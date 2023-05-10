@@ -58,7 +58,7 @@ fig.tight_layout()
 fig.savefig("Images/LicensedSocialWorkersandPsychiatrists.png")
 
 
-#%% 2 PANEL GRAPH FOR COMPARISONs
+#%% 2 PANEL GRAPH FOR COMPARISONS
 
 # set up a figure with two axis
 fig1, (ax1,ax2) = plt.subplots(1,2, sharey=True)
@@ -74,8 +74,7 @@ youth_MHS.plot.scatter(ax=ax2, x="Licensed Social Workers", y="Psychiatrists")
 ax2.set_xlabel("Licensed Social Workers")
 ax2.set_ylabel("Psychiatrists")
 fig1.tight_layout()
-
-# add regressiion?????????????
+fig1.savefig("Images/TwoPanelComparison.png")
 
 #%% TOTAL POPULATION COMPARISONS
 
@@ -114,9 +113,9 @@ fig.tight_layout()
 fig.savefig("Images/TotalPopulationLSW-NYSCounties.png")
 
 
-#%% FAMILY INCOME INCLUDED
+#%% FAMILY INCOME INCLUDED- SEABORN RELPLOTS
 
-# SEABORN RELPLOT
+# setting up for seaborn plots
 # The sizes argument sets the minimum and maximum sizes that will be used
 # for points (which are scaled by the population of each ring). 
 # The facet_kws argument is a dictionary of tweaks allowed by Seaborn's 
@@ -131,32 +130,54 @@ fig.savefig("Images/TotalPopulationLSW-NYSCounties.png")
 fg = sns.relplot(data= youth_MHS, x='FAM_INCOME', y= 'Psychiatrists',
                  size='POP', sizes=(10,200),
                  facet_kws={'despine': False, 
-                            'subplot_kws': {'title': 'Family Income by Psychiatrists'}})
-fig.savefig("Images/FamilyIncomebyPsychiatrists.png")
+                            'subplot_kws': {'title': 'Family Income vs Psychiatrists'}})
+fg.savefig("Images/FamilyIncomebyPsychiatrists.png")
 
 #%% Family Income and Pediatricians
 
 fg = sns.relplot(data= youth_MHS, x='FAM_INCOME', y= 'Pediatricians',
                  size='POP', sizes=(10,200),
                  facet_kws={'despine': False, 
-                            'subplot_kws': {'title': 'Family Income by Pediatricians'}})
-fig.savefig("Images/FamilyIncomebyPediatricians.png")
+                            'subplot_kws': {'title': 'Family Income vs Pediatricians'}})
+fg.savefig("Images/FamilyIncomebyPediatricians.png")
 
 #%% Family Income and Licensed Social Workers
 
 fg = sns.relplot(data= youth_MHS, x='FAM_INCOME', y= 'Licensed Social Workers',
                  size='POP', sizes=(10,200),
                  facet_kws={'despine': False, 
-                            'subplot_kws': {'title': 'Family Income by Licensed Social Workers'}})
-fig.savefig("Images/FamilyIncomebyLSW.png")
+                            'subplot_kws': {'title': 'Family Income vs Licensed Social Workers'}})
+fg.savefig("Images/FamilyIncomebyLSW.png")
 
 #%% Family Income and Psychologists
 
 fg = sns.relplot(data= youth_MHS, x='FAM_INCOME', y= 'Psychologists',
                  size='POP', sizes=(10,200),
                  facet_kws={'despine': False, 
-                            'subplot_kws': {'title': 'Family Income by Psychologists'}})
-fig.savefig("Images/FamilyIncomebyPsychologists.png")
+                            'subplot_kws': {'title': 'Family Income vs Psychologists'}})
+fg.savefig("Images/FamilyIncomebvPsychologists.png")
+
+#%% Family Income 4 panel comparison
+
+youth_trim = youth_MHS.set_index(["FAM_INCOME", "POP", "County"])
+youth_trim = youth_trim[["Psychiatrists",
+                         "Pediatricians", 
+                         "Licensed Social Workers", 
+                         "Psychologists"]]
+youth_stack = youth_trim.stack()
+
+youth_stack= youth_stack.reset_index()
+youth_stack = youth_stack.rename(columns= {"level_3":"Provider", 0:"Rate"})
+
+fg = sns.relplot(data= youth_stack, x='FAM_INCOME', y= 'Rate', col="Provider",
+                 size='POP', sizes=(10,200), col_wrap=2,
+                 facet_kws={'despine': False, 
+                            'subplot_kws': {'title': 'Family Income vs Psychologists'}})
+fg.figure.suptitle("TITLE")
+fg.tight_layout()
+#fg.savefig("Images/FamilyIncomebvPsychologists.png")
+
+
 
 #%% HEX PLOT
 # produces high-level graphics object that doesn't require the subplot function
@@ -170,12 +191,12 @@ jg = sns.jointplot( data=youth_MHS, x="Licensed Social Workers", y="Psychiatrist
 jg.set_axis_labels("Licensed Social Workers", "Psychiatrists")
 jg.fig.suptitle("LSW & Psychiatrists")
 jg.fig.tight_layout()
-jg.savefig("Images/LSWandPsychiatristsHex.png")
+jg.savefig("Images/Licensed Social WorkersandPsychiatristsHex.png")
 
 #%% DENSITY OF PROBABILITY PLOT- All PROVIDERS
+
 # stack data to create overlapping densities of different types of doctors availible
 # this displays the likleyhood of finding a specific provider within each county
-
 stacked = youth_MHS [['County', 'Pediatricians',
                       'Psychiatrists', 'Family Medicine Physicians',
                       'Licensed Social Workers','Psychologists']]
@@ -202,10 +223,9 @@ fig.savefig("Images/ProbabilityDensityAllProviders.png")
 
 
 
-
 # load whole thing and filter to State 36
 
-#%%
+#%% 
 
 # seaborn can draw 4 plots in one thing later
 # do ordinary plots one by one--- then do fancy later
