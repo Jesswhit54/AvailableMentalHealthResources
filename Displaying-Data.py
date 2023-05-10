@@ -171,12 +171,10 @@ youth_stack = youth_stack.rename(columns= {"level_3":"Provider", 0:"Rate"})
 
 fg = sns.relplot(data= youth_stack, x='FAM_INCOME', y= 'Rate', col="Provider",
                  size='POP', sizes=(10,200), col_wrap=2,
-                 facet_kws={'despine': False, 
-                            'subplot_kws': {'title': 'Family Income vs Psychologists'}})
-fg.figure.suptitle("TITLE")
+                 facet_kws={'despine': False,})
+fg.figure.suptitle("Side-by-Side Family Income across providers")
 fg.tight_layout()
-#fg.savefig("Images/FamilyIncomebvPsychologists.png")
-
+fg.savefig("Images/SidebySideFamilyIncomeacrossproviders.png")
 
 
 #%% HEX PLOT
@@ -211,7 +209,7 @@ ax.set_title("Probability Desnity Multiple Providers")
 fig.tight_layout()
 fig.savefig("Images/ProbabilityDensityAllProviders.png")
 
-#%% HEATMAP
+#%% HEATMAP?
 # load in shape file- counties
 # merge on to county whatever you want to use as color variable
 # join onto county name
@@ -220,15 +218,11 @@ fig.savefig("Images/ProbabilityDensityAllProviders.png")
 # download shape file from census for cartigraphic boundreis for 
 # county filter for FIPS code 36
 # can tell ppl how to get original data 
-
-
-
 # load whole thing and filter to State 36
 
-#%% 
 
-# seaborn can draw 4 plots in one thing later
-# do ordinary plots one by one--- then do fancy later
 
-# 
+
+
+
 
