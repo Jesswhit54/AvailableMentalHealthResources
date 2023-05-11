@@ -207,6 +207,6 @@ stacked = stacked.rename(columns= {"level_1": "Provider", 0:"Count"})
 # saving the image of density plot
 fig,ax = plt.subplots()
 sns.kdeplot(data=stacked, x="Count", hue= "Provider", fill=True, ax=ax)
-ax.set_title("Probability Desnity Multiple Providers")
+ax.set_title("Probability Density Multiple Providers")
 fig.tight_layout()
 fig.savefig("Images/ProbabilityDensityAllProviders.png")
