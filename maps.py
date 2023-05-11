@@ -4,18 +4,6 @@ Created on Wed May 10 15:39:47 2023
 
 @author: jessi
 """
-#%% HEATMAP?
-# load in shape file- counties
-# merge on to county whatever you want to use as color variable
-# join onto county name
-# geodataframe.plot("column name you want to use for coloring")
-# 
-# download shape file from census for cartigraphic boundreis for 
-# county filter for FIPS code 36
-# can tell ppl how to get original data 
-# load whole thing and filter to State 36
-
-
 
 #%% IMPORT MODULES AS NECESSARY
 import geopandas as gpd
@@ -57,7 +45,14 @@ merged.to_file("merged.gpkg",layer= "providers")
 # create providers map with informative legend
 merged.plot("Psychologists", legend=True)
 
+# create providers map with informative legend
+merged.plot("Pediatricians", legend=True)
 
+# create providers map with informative legend
+merged.plot("Psychiatrists", legend=True)
+
+# create providers map with informative legend
+merged.plot("Licensed Social Workers", legend=True)
 
 # wrap around matplotlib
 # add label etc. 
