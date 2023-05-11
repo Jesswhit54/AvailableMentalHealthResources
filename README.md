@@ -16,7 +16,7 @@ Data for provider information was found on the Center for Disease Control websit
 
 ### *Data_Collection_Under18_Mental_Health_Services.py*
 
-Run this script first to import the CSV file containing provider information within New York State counties. This script runs an API that collects relevant census variables, in this case [`Total Population`] , [`Under 18 Population`] and [`Family Income`]. The script cleans data, merges data with a left join and saves to a pickle file to import into the next script. 
+Run this script first to import the CSV file containing provider information within New York State counties. This script runs an API that collects relevant census variables, in this case `Total Population` , `Under 18 Population` and `Family Income`. The script cleans data, merges data with a left join and saves to a pickle file to import into the next script. 
 
 Note:
 
@@ -30,7 +30,7 @@ Run this script next to display relevant data in various ways. This script does 
 
 Visualization methods include:
 
-- Scatterplots with or without regressions
+- Scatter plots with or without regressions
 - Two Panel Comparison Graphs
 - Four Panel Comparison Graphs
 - Seaborn Relplots
@@ -47,26 +47,26 @@ Run this script last to produce heat maps displaying New York State counties and
 
 The data seems to show gaps in mental health resources for youth under 18 in various counties within New York State. Population size does not seem to match providers within the county, as larger counties and smaller counties have similar provider counts or smaller counties have a lower number of licensed providers. The level of providers vary based on family income across counties, there are more providers in affluent areas. These factors are explored below and create gaps within youth resources.
 
-Note: Graphs display providers per 10,000 Kids
+Pediatricians are likely to refer children to specialists such as Psychologists and Psychiatrists. Social Workers are typically the gate keepers for youth and resources. They are typically called upon to report to authorities and report abuse to child protection service. 
 
+##### *Note: Graphs display providers per 10,000 Kids*
 
-**Scatterplot Comparison**
+**Scatter Plot Comparison**
 ![Two Panel Comparison](Images/TwoPanelComparison.png)
-Positive correlation with more pediatricians correlated with more psys and scoial workers
 
-There is a strong correlation between pediatritains and phychiatrists 
+The above graph shows the comparison between two individual scatter plots. Each plot shows a positive correlation between Psychiatrist and Pediatricians which compares to the correlation between Psychiatrists and Licensed Social Workers. We can assume there is a positive correlation across pediatricians and other providers.
 
-
-Total Population Scatter Plot
+**Total Population Scatter Plot**
 ![Total Population Psychiatrists- NYS Counties](Images/TotalPopulationPsychiatrists-NYSCounties.png)
-Look at total population by Psy after correlation
 
+Looking at total population from the census data, we can see a concentration of Psychiatrists in low population areas whereas higher population areas average between 5-7.5 per 10,000 kids. As seen in the above scatter plots, there is a positive correlation between Psychiatrists,  Pediatricians and Licensed Social Workers. This leads us to believe there are some lacking resources for higher population areas, though it would be best to run an `under_18` variable to access the full effect on youth.
 
-Density of all providers
-![Probability of All Provdiers](Images/ProbabilityDensityAllProviders.png)
+**Density of All Providers**
+![Probability of All Providers](Images/ProbabilityDensityAllProviders.png)
 
+The findings in the 'Total Population Scatter Plot' are supported in the above 'Density of All Provider'. Throughout this graph, we can see there is a dispersed density of social workers though there are far less than other providers. This means you'll have a higher likelihood of finding either a Pediatrician, Psychiatrist, Family Medicine Physicians or Psychologist however only in very specific counties. Whereas, there is a higher chance of finding a License Social Worker across the counties.
 
-Add Family Income variable
+**Family Income Variable**
 ![Family Income Across Providers](Images/SidebySideFamilyIncomeacrossproviders.png)
 
 
