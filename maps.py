@@ -20,6 +20,7 @@ counties = counties.query("STATEFP=='36'")
 # reproject NYS map image so we can create a heat map wihtin the counties
 counties = counties.to_crs(epsg=26918)
 
+#%% READ IN DATAFRAME
 data=pd.read_pickle("youth_MHS.pkl")
 
 #%% CREATE MERGED DATAFRAME FOR MAPPING
@@ -54,6 +55,7 @@ merged.plot("Psychiatrists", legend=True)
 # create providers map with informative legend
 merged.plot("Licensed Social Workers", legend=True)
 
+
 # wrap around matplotlib
-# add label etc. 
+# add label etc. !!!!!! NEED TO ADD TITLES
 

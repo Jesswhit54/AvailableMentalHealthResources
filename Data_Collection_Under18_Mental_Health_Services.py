@@ -18,7 +18,7 @@ url = "https://api.census.gov/data/2015/acs/acs5"
 params = {
     "get": "B09001_001E,NAME,B01001_001E,B19113_001E",
     "for": "county:*",
-    "in": "state:36",
+    "in": "state:36", # change state you are requesting information for here
     "key": '37233c863bd5ebadbea1db94fdea521aa5ad4ddd'
     }
 
