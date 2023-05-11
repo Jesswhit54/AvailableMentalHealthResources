@@ -86,9 +86,14 @@ E. Create HeatMaps with different providors acorss counties in each map. For cla
 
 #
 # Analysis and Results
-*Whats the take away? Here is the conclusion. run the risk of lacking *
 
-Note: Per 10,000 Kids
+There are various conclusions we can draw from our data displays. The overarching conclusion is that there are gaps in mental health resources for youth under 18 in various counties within New York State. Regardless of population size there are counties that have the same level of providers which could lead to a lack in resources for youth. The level of providers seems to vary based on family incomes which could speak to inaccessability dependant on wealth. 
+
+
+There is a strong correlation between pediatritains and phychiatrists 
+
+
+Note: Graphs display providers per 10,000 Kids
 
 Scatterplot Comparison
 ![Two Panel Comparison](Images/TwoPanelComparison.png)
@@ -106,4 +111,8 @@ Density of all providers
 Add Family Income variable
 ![Family Income Across Providers](Images/SidebySideFamilyIncomeacrossproviders.png)
 
+
+Moving forward, we can look for similar variables across underserved counties and see if there are correlations. Additionally, looking at the average case load of providers would offer a better estimate if youth are truly being underserved. 
+
+If there are gaps within mental health resources for youth, this could be relevant for policy makers who want to improve access. If programs and polices are reliant on community supports it would be necessary to knwo the supports in place, to know whether capacity building is necessary. 
 
