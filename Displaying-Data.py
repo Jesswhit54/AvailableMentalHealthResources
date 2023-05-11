@@ -4,6 +4,8 @@ Created on Sun Apr 30 17:21:00 2023
 
 @author: jessi
 """
+# GRAPHING AND PLOTTING DATA
+# various data visualization  methods can be seen below
 
 #%% IMPORT NECESSARY MODULES
 # import previous modules and data vizualization modules
@@ -18,9 +20,6 @@ plt.rcParams['figure.dpi'] = 300
 
 # Read your data file 
 youth_MHS = pd.read_pickle("youth_MHS.pkl")
-
-#%% GRAPHING AND PLOTTING DATA
-# various data visualization  methods can be seen below
 
 #%% PROVIDER CORRELATIONS: SCATTERPLOT and REGRESSIONS
 # we will look at various corrilations between the five providers
@@ -58,7 +57,7 @@ fig.tight_layout()
 fig.savefig("Images/LicensedSocialWorkersandPsychiatrists.png")
 
 
-#%% 2 PANEL GRAPH FOR COMPARISONS
+#%% TWO PANEL GRAPH FOR SCATTERPLOT COMPARISONS
 
 # set up a figure with two axis
 fig1, (ax1,ax2) = plt.subplots(1,2, sharey=True)
@@ -77,6 +76,7 @@ fig1.tight_layout()
 fig1.savefig("Images/TwoPanelComparison.png")
 
 #%% TOTAL POPULATION COMPARISONS
+# for all total population comparisons we use data found in the cenus
 
 #%% Total Population and Psychiatrists
 
@@ -110,12 +110,14 @@ ax.set_title("Total Population LSW NYS Counties")
 ax.set_xlabel("Total Population")
 ax.set_ylabel("Licensed Social Workers")
 fig.tight_layout()
-fig.savefig("Images/TotalPopulationLSW-NYSCounties.png")
+fig.savefig("Images/TotalPopulationSocialWorkers-NYSCounties.png")
 
 
 #%% FAMILY INCOME INCLUDED- SEABORN RELPLOTS
+# for family income graphs we use data found in the cenus
 
-# setting up for seaborn plots
+# Seaborn plots (set up)
+
 # The sizes argument sets the minimum and maximum sizes that will be used
 # for points (which are scaled by the population of each ring). 
 # The facet_kws argument is a dictionary of tweaks allowed by Seaborn's 
@@ -157,7 +159,7 @@ fg = sns.relplot(data= youth_MHS, x='FAM_INCOME', y= 'Psychologists',
                             'subplot_kws': {'title': 'Family Income vs Psychologists'}})
 fg.savefig("Images/FamilyIncomebvPsychologists.png")
 
-#%% Family Income 4 panel comparison
+#%% Family Income four panel comparison
 
 youth_trim = youth_MHS.set_index(["FAM_INCOME", "POP", "County"])
 youth_trim = youth_trim[["Psychiatrists",
@@ -208,21 +210,3 @@ sns.kdeplot(data=stacked, x="Count", hue= "Provider", fill=True, ax=ax)
 ax.set_title("Probability Desnity Multiple Providers")
 fig.tight_layout()
 fig.savefig("Images/ProbabilityDensityAllProviders.png")
-
-#%% HEATMAP?
-# load in shape file- counties
-# merge on to county whatever you want to use as color variable
-# join onto county name
-# geodataframe.plot("column name you want to use for coloring")
-# 
-# download shape file from census for cartigraphic boundreis for 
-# county filter for FIPS code 36
-# can tell ppl how to get original data 
-# load whole thing and filter to State 36
-
-
-
-
-
-
-
