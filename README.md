@@ -4,12 +4,12 @@
 # Summary
 
 This is a description of various health resources available for youth in New York State on a county level. The focus of this data is to accesss mental health resources available for youth specifically under the age of 18. The goal is to note any gaps in availible resources for youth. The methods used to access resources can be applied across states. The results can allow for capacity building measures in under served areas. Additionally, youth and educational policy makers can use this data when designing those policies. When creating policy or programs aimed at youth, it is useful to access the capacity of youth and their supports to engage with the implemented programs.
-
+#
 # Input Data
 
 Data for provider information was found on the Center for Disease Control website. [[*Behavioral Health Services in New York, 2015*](https://www.cdc.gov/childrensmentalhealth/stateprofiles-providers/new-york/index.html)]. This data was scrapped from  the CDC webpage and exported to a CSV file. Census data is collected via an API call to pull in relevant variables such as total population, under 18 population and median family income. 
 
- **mental_health_2015** is our main dataframe displaying the number of behavioral health services by county in New York State, per 10,000 (ten thousand) kids. 
+ **mental_health_2015** is our main input dataframe, displaying the number of behavioral health services by county in New York State, per 10,000 (ten thousand) kids. 
  
     Categories include: 
         pediatricians, 
@@ -18,8 +18,8 @@ Data for provider information was found on the Center for Disease Control websit
         psychologists, and 
         licensed social workers.
 
-
-# Running Script
+#
+# Running Scripts
 
 ### *Data_Collection_Under18_Mental_Health_Services.py*
 
@@ -49,7 +49,7 @@ B. Access Census Information
 
 After merging the data into a new dataframe with relevant census variables and provider information, we can access how these variables interact. 
 
-A. Begin by reading in dataframe **youth_MHS.pkl**
+A. Begin by reading in dataframe **youth_MHS.pkl**.
 
 B. There are various data vizualization methods for users including:
 
@@ -61,7 +61,7 @@ B. There are various data vizualization methods for users including:
         - Hex Plots
         - Heat Maps (see `maps.py` script below)
 
-We will use the produced graphs to access the findings of the project.
+        *We will use the produced graphs to access the findings of the project. You can compare various graphs to find correlations amoung variables. 
 
 ### *maps.py*
 Import census county data and heatmap providor information onto the New York State county reprojected map.
@@ -74,15 +74,18 @@ B. Read in shapefile.
 
 2. Reproject the New York State map to serve as an outline for our heat map. 
 
-C. Read in **youth_MHS.pkl** 
+C. Read in **youth_MHS.pkl**. 
 
-D. Merge data to later map. 
+D. Merge data. 
 
-1. Create new dataframe to merge with lefthand join on counties. 
+1. Create new dataframe to merge with lefthand join on counties, dropped merge indicator. 
 
-2. 
+2. Create a gpkg file with the layers argument as `Provider` as we want to vizualize the providers across counties.
 
+E. Create HeatMaps with different providors acorss counties in each map. For clarity include legends, titles and comparison graphs.
 
+#
+# Analysis and Results
+*Whats the take away? Here is the conclusion. run the risk of lacking *
 
-## CONCLUSION: Whats the take away? Here is the conclusion. run the risk of lacking 
 
