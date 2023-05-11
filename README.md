@@ -7,16 +7,11 @@ This is a description of various health resources available for youth in New Yor
 #
 # Input Data
 
-Data for provider information was found on the Center for Disease Control website. [[*Behavioral Health Services in New York, 2015*](https://www.cdc.gov/childrensmentalhealth/stateprofiles-providers/new-york/index.html)]. This data was scrapped from  the CDC webpage and exported to a CSV file. Census data is collected via an API call to pull in relevant variables such as total population, under 18 population and median family income. 
+Data for provider information was found on the Center for Disease Control website. [[*Behavioral Health Services in New York, 2015*](https://www.cdc.gov/childrensmentalhealth/stateprofiles-providers/new-york/index.html)]. This data was scraped from  the CDC webpage and exported to a CSV file provided above ''. Census data is collected via an API call to pull in relevant variables such as total population, under 18 population and median family income. The data is provided below.
 
- **mental_health_2015** is our main input dataframe, displaying the number of behavioral health services by county in New York State, per 10,000 (ten thousand) kids. 
+The CSV file provides data displaying the number of behavioral health services by county in New York State, per 10,000 (ten thousand) kids. 
  
-    Categories include: 
-        pediatricians, 
-        family medicine physicians, 
-        psychiatrists, 
-        psychologists, and 
-        licensed social workers.
+There are five provider types: pediatricians, family medicine physicians, psychiatrists, psychologists and licensed social workers. 
 
 #
 # Running Scripts
@@ -24,6 +19,8 @@ Data for provider information was found on the Center for Disease Control websit
 ### *Data_Collection_Under18_Mental_Health_Services.py*
 
 Import and clean data, merge data with left join creating one dataframe with all variables to vizualize and analyze data. 
+
+This should be run first is imports CSV and runs API to get blah blah 
 
 A. Import CSV file 'Behavioral health service providers by county 2015.csv' from the CDC webpage into dataframe **'mental_health_2015'**. 
 
@@ -39,13 +36,17 @@ B. Access Census Information
 
 5. From this point, the user is able to import relevant variables and try different ratios for whatever analysis you would like to run.
 
-        * In this case there is a ratio of 'total population' divided by 10,000 to access the relationship between providers and youth populations.
+Notes:
 
-       ** Manhattan is dropped as an outlyer, as it does not reflect the average we are seeking to access in this project.  
+In this case there is a ratio of 'total population' divided by 10,000 to access the relationship between providers and youth populations.
+
+Manhattan is dropped as an outlyer, as it does not reflect the average we are seeking to access in this project.  
 
 6. Save dataframe data to a pickle file to use in the next script. 
 
 ### *Displaying-Data.py*
+
+this script doesnr do any analysis it just runs figures 
 
 After merging the data into a new dataframe with relevant census variables and provider information, we can access how these variables interact. 
 
@@ -53,15 +54,15 @@ A. Begin by reading in dataframe **youth_MHS.pkl**.
 
 B. There are various data vizualization methods for users including:
 
-        - Scatterplots with or without regressions
-        - Two Panel Comparison Graphs
-        - Four Panel Comparison Graphs
-        - Seaborn Relplots
-        - Density Graphs
-        - Hex Plots
-        - Heat Maps (see `maps.py` script below)
+- Scatterplots with or without regressions
+- Two Panel Comparison Graphs
+- Four Panel Comparison Graphs
+- Seaborn Relplots
+- Density Graphs
+- Hex Plots
+- Heat Maps (see `maps.py` script below)
 
-        *We will use the produced graphs to access the findings of the project. You can compare various graphs to find correlations amoung variables. 
+*We will use the produced graphs to access the findings of the project. You can compare various graphs to find correlations amoung variables. 
 
 ### *maps.py*
 Import census county data and heatmap providor information onto the New York State county reprojected map.
