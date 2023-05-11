@@ -85,15 +85,15 @@ fig,ax = plt.subplots()
 youth_MHS.plot.scatter(x= 'TOTAL_POP', y= 'Psychiatrists', ax=ax)
 
 # run a regression on the scatterplot with a 95% confidence interval
-sns.lmplot(x= 'TOTAL_POP', y='Psychiatrists', data=youth_MHS)
-sns.lmplot(x= 'FAM_INCOME', y='Psychiatrists', data=youth_MHS)
+# sns.lmplot(x= 'TOTAL_POP', y='Psychiatrists', data=youth_MHS)
+# sns.lmplot(x= 'FAM_INCOME', y='Psychiatrists', data=youth_MHS)
 
 # save image of total population and Psychiatrists
-ax.set_title("Total Population PSY NYS Counties")
+ax.set_title("Total Population Psychiatrists NYS Counties")
 ax.set_xlabel("Total Population")
 ax.set_ylabel("Psychiatrists")
 fig.tight_layout()
-fig.savefig("Images/TotalPopulationofNYSCounties.png")
+fig.savefig("Images/TotalPopulationPsychiatrists-NYSCounties.png")
 
 #%% Total Population and Licensed Social Workers
 
@@ -102,8 +102,8 @@ fig,ax = plt.subplots()
 youth_MHS.plot.scatter(x= 'TOTAL_POP', y= 'Licensed Social Workers', ax=ax)
 
 # run a regression on the scatterplot with a 95% confidence interval
-sns.lmplot(x= 'TOTAL_POP', y='Licensed Social Workers', data=youth_MHS)
-sns.lmplot(x= 'FAM_INCOME', y='Licensed Social Workers', data=youth_MHS)
+# sns.lmplot(x= 'TOTAL_POP', y='Licensed Social Workers', data=youth_MHS)
+# sns.lmplot(x= 'FAM_INCOME', y='Licensed Social Workers', data=youth_MHS)
 
 # save image of total population and Psychiatrists
 ax.set_title("Total Population LSW NYS Counties")

@@ -88,12 +88,22 @@ E. Create HeatMaps with different providors acorss counties in each map. For cla
 # Analysis and Results
 *Whats the take away? Here is the conclusion. run the risk of lacking *
 
+Note: Per 10,000 Kids
+
+Scatterplot Comparison
+![Two Panel Comparison](Images/TwoPanelComparison.png)
+Positive correlation with more pediatricians correlated with more psys and scoial workers
+
+Total Population Scatter Plot
+![Total Population Psychiatrists- NYS Counties](Images/TotalPopulationPsychiatrists-NYSCounties.png)
+Look at total population by Psy after correlation
+
+
 Density of all providers
 ![Probability of All Provdiers](Images/ProbabilityDensityAllProviders.png)
 
 
-Test 
-
-
+Add Family Income variable
+![Family Income Across Providers](Images/SidebySideFamilyIncomeacrossproviders.png)
 
 
