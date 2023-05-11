@@ -45,7 +45,7 @@ Run this script last to produce heat maps displaying New York State counties and
 #
 # Analysis and Results
 
-There data seems to show gaps in mental health resources for youth under 18 in various counties within New York State. Population size does not seem to match providers within the county, as larger counties and smaller counties have similar provider counts or smaller counties have a lower number of licensed providers. The level of providers vary based on family income across counties, there are more providers in affluent areas. These factors are explored below and create gaps within youth resources.
+The data seems to show gaps in mental health resources for youth under 18 in various counties within New York State. Population size does not seem to match providers within the county, as larger counties and smaller counties have similar provider counts or smaller counties have a lower number of licensed providers. The level of providers vary based on family income across counties, there are more providers in affluent areas. These factors are explored below and create gaps within youth resources.
 
 Note: Graphs display providers per 10,000 Kids
 
