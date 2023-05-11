@@ -88,4 +88,12 @@ E. Create HeatMaps with different providors acorss counties in each map. For cla
 # Analysis and Results
 *Whats the take away? Here is the conclusion. run the risk of lacking *
 
+Density of all providers
+![Probability of All Provdiers](Images/Images/ProbabilityDensityAllProviders.png)
+
+
+Test 
+
+
+
 
