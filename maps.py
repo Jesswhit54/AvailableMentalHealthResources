@@ -8,6 +8,8 @@ Created on Wed May 10 15:39:47 2023
 #%% IMPORT MODULES AS NECESSARY
 import geopandas as gpd
 import pandas as pd
+import matplotlib.pyplot as plt
+plt.rcParams['figure.dpi'] = 300
 
 #%% READ AND PROJECT DATA
 
@@ -43,19 +45,34 @@ merged.to_file("merged.gpkg",layer= "providers")
 
 #%% CREATE HEATMAP WITH DATAFRAME
 
-# create providers map with informative legend
-merged.plot("Psychologists", legend=True)
+state= merged.dissolve()
+
+
+
+fig,((axul,axur),(axll,axlr))= plt.subplots(2,2)
+
+#can do abc ect. 
 
 # create providers map with informative legend
-merged.plot("Pediatricians", legend=True)
+merged.plot("Pediatricians",cmap="Purples", legend=True, ax=axul)
+axul.axis("off")
+axul.set_title("Pediatricians")
+state.boundary.plot(color="grey",lw=0.25, ax=axul)
 
 # create providers map with informative legend
-merged.plot("Psychiatrists", legend=True)
+merged.plot("Psychologists",cmap="Blues", legend=True, ax=axur)
+axur.axis("off")
 
 # create providers map with informative legend
-merged.plot("Licensed Social Workers", legend=True)
+merged.plot("Psychiatrists", cmap="Greens", legend=True, ax=axll)
+axll.axis("off")
+
+# create providers map with informative legend
+merged.plot("Licensed Social Workers",cmap="Oranges", legend=True, ax=axlr)
+axlr.axis("off")
+
+fig.tight_layout()
+fig.savefig("Images/ComparativeHeatMaps.png")
 
 
-# wrap around matplotlib
-# add label etc. !!!!!! NEED TO ADD TITLES
 
