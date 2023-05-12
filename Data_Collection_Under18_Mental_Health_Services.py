@@ -88,10 +88,3 @@ youth_MHS = youth_MHS.query("County != 'New York'")
 #%% SAVING DATA FILE
 
 youth_MHS.to_pickle("youth_MHS.pkl")
-
-
-
-
-
-
-

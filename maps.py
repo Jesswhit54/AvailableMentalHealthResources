@@ -67,7 +67,6 @@ axur.axis("off")
 axur.set_title("Psychologists")
 state.boundary.plot(color="grey",lw=0.25, ax=axur)
 
-
 merged.plot("Psychiatrists", cmap="Greens", legend=True, ax=axll)
 axll.axis("off")
 axll.set_title("Psychiatrists")
@@ -82,6 +81,3 @@ state.boundary.plot(color="grey",lw=0.25, ax=axlr)
 # save figure
 fig.tight_layout()
 fig.savefig("Images/ComparativeHeatMaps.png")
-
-
-
