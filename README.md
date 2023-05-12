@@ -75,21 +75,17 @@ After adding in the medium family income variable from the census data, I compar
 
 In the Psychiatrists plot we can see a concentration around the $50,000 - $60,000 income range with an average of approximately 5-10 providers. There are some outliers as we can see in the higher income ranges which are still seen hovering within the 10 providers range. This trend is similar for the Pediatricians range with similar outliers within the higher income range. 
 
-Contrary to the referenced plots, we can see a dispersed range among the Licensed Social Worker plot. There is a higher concentration of social workers among the $50,000 - $60,000 salary range. The data has more outliers than the other plots. There seems to be average of 40-50 providers however there are many outliers that have more or less providers per population. There are some counties that have similar populations and less providers in addition to counties that have the same population size with higher income and more providers. After the side-by-side comparisons, we can see there is a clear connection between income and providers. 
+Contrary to the referenced plots, we can see a dispersed range among the Licensed Social Worker plot. There is a higher concentration of social workers among the $50,000 - $60,000 salary range. The data has more outliers than the other plots. There seems to be average of 40-50 providers however there are many outliers that have more or less providers per population. There are some counties that have similar populations and less providers in addition to counties that have the same population size with higher income and more providers. After the side-by-side comparisons, we can see there is a clear connection between income and providers. Those with higher income have access to providers regardless of population size.
 
+**Comparative Heat Map**
+![Comparative Heat Map](Images/ComparativeHeatMaps.png)
 
+The above heat maps express the amount of providers in different counties within New York State. This map supports the previous assumptions that there are more social workers available in certain counties versus. 
 
-Moving forward, we can look for similar variables across underserved counties and see if there are correlations. Additionally, looking at the average case load of providers would offer a better estimate if youth are truly being underserved. 
+Next steps of this analysis would be to add variables that may explain the similarities in under served communities. Additionally, looking at the average case load of providers would offer a better estimate if youth in certain communities are truly being undeserved. 
 
-If there are gaps within mental health resources for youth, this could be relevant for policy makers who want to improve access. If programs and polices are reliant on community supports it would be necessary to knwo the supports in place, to know whether capacity building is necessary. 
+There is a common trend in the above data that those in affluent areas hae more access to mental health resources. There are types of providers over represented and under represented in certain communities that could create inequitable support for youth.
 
-worry about ppl who have lower family income because afluent ppl have LSW. 
+Gaps in mental health resources for youth is relevant for policy makers who want to improve youth health access. If programs and polices for youth are reliant on community supports, it is necessary to accurately access the supports in place. This data provides an informative base to know the best capacity building methods to engage in. 
 
-Theres some gaps especially if ppl are supposed to be abel to have lsw at 50 but larger and smaller counties are not equal in the amount they have. 
-
-Are the counties low on social workers low on the other providers? 
-Population dencity not analyzsed here but could be a big factor- degree of population density 
-
-
-Say more about what you see
-
+There are more variables necessary to offer a full analysis, including case load for providers and a variable for under 18 population. 
