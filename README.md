@@ -22,7 +22,7 @@ Note:
 
 * In this case there is a ratio of 'total population' divided by 10,000 to access the relationship between providers and youth populations.
 
-* Manhattan is dropped as an outlier, as it does not reflect the average we are seeking to access in this project.  
+* Manhattan is dropped as an outlier, as it does not reflect the average in this project.  
 
 ### *Displaying-Data.py*
 
@@ -49,6 +49,8 @@ The data seems to show gaps in mental health resources for youth under 18 in var
 
 Pediatricians are likely to refer children to specialists such as Psychologists and Psychiatrists. Social Workers are typically the gate keepers for youth and resources. They are typically called upon to report to authorities and report abuse to child protection service. 
 
+I will be focusing on pediatricians, psychiatrists, psychologists and licensed social workers for this analysis. Family medicine physicians are not the majority of mental healthcare providers so we will look at the impact of other providers. 
+
 ##### *Note: Graphs display providers per 10,000 Kids*
 
 **Scatter Plot Comparison**
@@ -68,6 +70,13 @@ The findings in the 'Total Population Scatter Plot' are supported in the above '
 
 **Family Income Variable**
 ![Family Income Across Providers](Images/SidebySideFamilyIncomeacrossproviders.png)
+
+After adding in the medium family income variable from the census data, I compare the main four providers against median family income among the counties populations. Plots displaying Pediatricians and Psychiatrists are similarly scattered and Licensed Social Workers are similarly displayed.
+
+In the Psychiatrists plot we can see a concentration around the $50,000 - $60,000 income range with an average of approximately 5-10 providers. There are some outliers as we can see in the higher income ranges which are still seen hovering within the 10 providers range. This trend is similar for the Pediatricians range with similar outliers within the higher income range. 
+
+Contrary to the referenced plots, we can see a dispersed range among the Licensed Social Worker plot. There is a higher concentration of social workers among the $50,000 - $60,000 salary range. The data has more outliers than the other plots. There seems to be average of 40-50 providers however there are many outliers that have more or less providers per population. There are some counties that have similar populations and less providers in addition to counties that have the same population size with higher income and more providers. After the side-by-side comparisons, we can see there is a clear connection between income and providers. 
+
 
 
 Moving forward, we can look for similar variables across underserved counties and see if there are correlations. Additionally, looking at the average case load of providers would offer a better estimate if youth are truly being underserved. 
